@@ -1,5 +1,6 @@
 import eventree from "../../public/eventree.png"
 import cosmos from "../../public/cosmos.png"
+import leadCapital from "../../public/leadCapital.png"
 
 
 export const portData = [
@@ -17,6 +18,14 @@ export const portData = [
     description:"Our Web App helps users to send money quickly and seamlessly to their love ones across the globe with little to no charge, read more on the website",
     name:"CosmosRemit Website",
     img: cosmos
+  },
+
+  {
+    id:3,
+    link:"https://leadcapital.netlify.app/",
+    description:"Lead capital is a shipping and logistics company that helps users to ship their goods from one location to another with ease, they are 100% reliable and trustworthy... read more on the website",
+    name:"LeadCapital Website",
+    img: leadCapital
   },
 
 ]
