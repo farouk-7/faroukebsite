@@ -2,6 +2,7 @@ import eventree from "../../public/eventree.png"
 import cosmos from "../../public/cosmos.png"
 import leadCapital from "../../public/leadCapital.png"
 import teevil from "../../public/teevil.png"
+import div from "../../public/div.png"
 
 
 export const portData = [
@@ -35,6 +36,13 @@ export const portData = [
     name:"LeadCapital Website",
     img: leadCapital
   },
+  {
+    id:5,
+    link:"https://divvicson.netlify.app/",
+    name:"Divvicson Academy Website",
+    description:"Divvicson Academy is an online learning platform that provides courses on various topics, including web development, programming, and design. The website is built with React and Chakra ui.",
+    img: div
+  },
 
 ]
 
@@ -46,12 +54,7 @@ export const portData = [
 //     img: teevil
 //   },
 //  
-//   {
-//     id:3,
-//     link:"https://divvicson.netlify.app/",
-//     title:"Divvicson Academy Website",
-//     img: div
-//   },
+//   
 //   {
 //     id:4,
 //     link:"https://leadcapital.netlify.app/",
