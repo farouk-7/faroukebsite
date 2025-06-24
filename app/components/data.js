@@ -9,7 +9,7 @@ export const portData = [
     id:1,
     link:"https://teevill.netlify.app/",
     description:"Teevill is a simple authentication flow that allows users to sign up, login. It is built with React",
-    title:"Simple Auth Flow",
+    name:"Teevil simple Auth Flow",
     img: teevil
   },
     {
