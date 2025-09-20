@@ -44,7 +44,7 @@ export default function Home() {
         {active.charAt(0).toUpperCase() + active.slice(1)}
       </div>
 
-      {/* Sidebar */}
+
       <aside id="farouk" className="flex-2 p-6 self-start h-full text-white md:sticky md:top-10">
         <nav className="space-y-4 flex-col ">
           <h1 className="text-[30px] text-center md:text-[50px] md:text-start font-extrabold">
@@ -93,11 +93,11 @@ export default function Home() {
         </div>
         <div className="flex flex-col items-center md:items-start   mt-5">
           <p><span style={{fontWeight:"bold"}}>Email:</span> <span>opeoluwaoyedejif@gmail.com</span> </p>
-          <p className="py-1">Hotline: 0704509751</p>
+          <p className="py-1">Hotline: 07045097751</p>
         </div>
       </aside>
 
-      {/* Main Content */}
+      
       <main className="mt-[20px] md:flex-2 overflow-y-scroll hide-scrollbar p-6 md:mt-30 space-y-32">
         <section id="about" className="mb-[50px] md:mb-[100px] scroll-mt-20">
           <h2 className="text-center text-3xl md:text-start font-semibold">About</h2>

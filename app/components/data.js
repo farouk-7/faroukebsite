@@ -8,9 +8,9 @@ import div from "../../public/div.png"
 export const portData = [
    {
     id:1,
-    link:"https://teevill.netlify.app/",
-    description:"Teevill is a simple authentication flow that allows users to sign up, login. It is built with React",
-    name:"Teevil simple Auth Flow",
+    link:"https://teevil-next.vercel.app/",
+    description:"Teevill is a Recruiter Web Application where Freelancer can apply for jobs and jobs can also be shared by Clients. It is built with Nextjs",
+    name:"Teevil App",
     img: teevil
   },
     {
