@@ -1,227 +1,352 @@
 "use client";
 import { useEffect, useState } from "react";
 import CursorSpotlight from "./components/CursorSpotlight";
-import { BsDashLg } from "react-icons/bs";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithubSquare } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { portData } from "./components/data";
+import { FaBars, FaLinkedinIn } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FiGithub } from "react-icons/fi";
+import { FaInstagram } from "react-icons/fa6";
+import { HiArrowDownRight } from "react-icons/hi2";
 import Image from "next/image";
-import Link from "next/link";
+import Card from "./components/Card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { IoCloseSharp } from "react-icons/io5";
 
-const sections = ["farouk","about", "experience", "projects", "technologies"];
 
 export default function Home() {
-  const [active, setActive] = useState("farouk");
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-50% 0px -50% 0px" }
-    );
-
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
+    const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="flex flex-col px-[px] py-0 gap-0 md:flex-row h-full justify-center bg-[#010916] md:px-[120px] md:py-[40px] md:gap-[20px] ">
-      <CursorSpotlight />
+    <div className="scroll-smooth">
+      {/* <nav className="flex justify-between items-center border-b-[2px] py-5 px-50 border-b-[#c2c2c2]">
+        <div>PORTFOLIO</div>
+        <div className="flex items-center ">
+          <div className="border-1 cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 w-fit text-sm">
+            HOME
+          </div>
+          <a
+            href="#about"
+            className="border-1 cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 w-fit text-sm"
+          >
+            ABOUT
+          </a>
+          <div className="border-1 cursor-pointer text-[#464545] font-semibold  border-[#c2c2c2] rounded-full px-5 py-1 w-fit text-sm">
+            SERVICES
+          </div>
+          <div className="border-1 cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 w-fit text-sm">
+            PROJECTS
+          </div>
+        </div>
+        <div className="flex items-center ">
+          <div className="border-1 cursor-pointer border-[#c2c2c2] rounded-full px-1 py-1 w-fit text-sm">
+            <FaLinkedinIn color={"#464545"} size={18} />
+          </div>
+          <div className="border-1 cursor-pointer border-[#c2c2c2] rounded-full px-1 py-1 w-fit text-sm">
+            <FaXTwitter color={"#464545"} size={18} />
+          </div>
+          <div className="border-1 cursor-pointer border-[#c2c2c2] rounded-full px-1 py-1 w-fit text-sm">
+            <FiGithub color={"#464545"} size={18} />
+          </div>
+          <div className="border-1 cursor-pointer border-[#c2c2c2] rounded-full px-1 py-1 w-fit text-sm">
+            <FaInstagram color={"#464545"} size={18} />
+          </div>
+        </div>
+      </nav> */}
+    <nav className="flex justify-between items-center border-b-2 py-4 px-6 md:px-12 border-b-[#c2c2c2] relative">
+     
+      <div className="text-lg font-bold">PORTFOLIO</div>
 
-      <div className={`md:hidden sticky top-0 z-50 text-white text-center py-2 text-lg font-semibold transition-all duration-300 ease-in-out ${
-    active === "about" ? "bg-white/10 backdrop-blur-sm opacity-100" : "bg-white/10 backdrop-blur-sm opacity-100"
-  }`}>
-        {active.charAt(0).toUpperCase() + active.slice(1)}
+      <div className="hidden md:flex items-center gap-4">
+        <div className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+          HOME
+        </div>
+        <a
+          href="#about"
+          className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
+        >
+          ABOUT
+        </a>
+        <div className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+          SERVICES
+        </div>
+        <div className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+          PROJECTS
+        </div>
       </div>
 
-
-      <aside id="farouk" className="flex-2 p-6 self-start h-full text-white md:sticky md:top-10">
-        <nav className="space-y-4 flex-col ">
-          <h1 className="text-[30px] text-center md:text-[50px] md:text-start font-extrabold">
-            Oyedeji Opeoluwa Farouk
-          </h1>
-          <p className="text-center md:text-start md:text-[20px] py-[10px] font-bold">Frontend Developer</p>
-          <p className="text-center md:text-start md:pb-[20px] font-semibold text-[18px]">
-            I build user friendly and responsive websites and web app that meets
-            both the user and business needs. I am passionate about creating
-            scalable and maintainable code, and I am always eager to learn new
-            technologies and improve my skills.
-          </p>
-          <div className="hidden md:block">
-            {sections.map((section) => (
-              <a
-                key={section}
-                href={`#${section}`}
-                className={`block uppercase text-[15px] transition-colors duration-200 ease-in-out  ${
-                  active === section ? "text-white font-bold" : "text-gray-400"
-                }`}
-              >
-                <div className="flex gap-5 items-center">
-                  {active === section ? (
-                    <div className="w-[70px] h-[2px] bg-white"></div>
-                  ) : (
-                    <div className="w-[35px] h-[2px] bg-gray-400"></div>
-                  )}
-
-                  {section}
-                </div>
-              </a>
-            ))}
+      <div className="hidden md:flex items-center gap-2">
+        <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
+          <FaLinkedinIn color={"#464545"} size={16} />
+        </div>
+        <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
+          <FaXTwitter color={"#464545"} size={16} />
+        </div>
+        <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
+          <FiGithub color={"#464545"} size={16} />
+        </div>
+        <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
+          <FaInstagram color={"#464545"} size={16} />
+        </div>
+      </div>
+      <button
+        className="md:hidden text-[#464545] z-20 cursor-pointer"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <IoCloseSharp size={24} /> : <FaBars size={24} />}
+      </button>
+      {isOpen && (
+        <div className="absolute top-full left-0 w-full bg-white border-t border-[#c2c2c2] flex flex-col items-center gap-4 py-6 md:hidden z-10">
+          <div className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+            HOME
           </div>
-        </nav>
-        <div className="flex justify-center md:justify-start gap-5 mt-[20px]">
-          <Link
-            href={"https://www.linkedin.com/in/opeoluwa-oyedeji-445a08245/"}
+          <a
+            href="#about"
+            className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
           >
-            <FaLinkedin size={30} className="cursor-pointer" />
-          </Link>
+            ABOUT
+          </a>
+          <div className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+            SERVICES
+          </div>
+          <div className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+            PROJECTS
+          </div>
 
-          <Link href="https://github.com/farouk-7">
-            <FaGithubSquare size={30} className="cursor-pointer" />
-          </Link>
-          <FaSquareXTwitter size={30} className="cursor-pointer" />
+          <div className="flex items-center gap-4 mt-4">
+            <FaLinkedinIn color={"#464545"} size={18} />
+            <FaXTwitter color={"#464545"} size={18} />
+            <FiGithub color={"#464545"} size={18} />
+            <FaInstagram color={"#464545"} size={18} />
+          </div>
         </div>
-        <div className="flex flex-col items-center md:items-start   mt-5">
-          <p><span style={{fontWeight:"bold"}}>Email:</span> <span>opeoluwaoyedejif@gmail.com</span> </p>
-          <p className="py-1">Hotline: 07045097751</p>
-        </div>
-      </aside>
+      )}
+    </nav>
+      <div className="py-5 px-6 md:px-50">
+        <p className="text-center text-[55px] leading-20 md:text-[150px] md:leading-40 tracking-widest ">
+          EXPLORE MY PORTFOLIO{" "}
+        </p>
+        <div className="flex flex-col items-center mt-5 justify-center md:flex-row md:justify-between md:items-start md:mt-10">
+          <div>
+            <p className="text-xl text-[#464545] font-semibold">
+              DEVELOPER EST.2000
+            </p>
 
-      
-      <main className="mt-[20px] md:flex-2 overflow-y-scroll hide-scrollbar p-6 md:mt-30 space-y-32">
-        <section id="about" className="mb-[50px] md:mb-[100px] scroll-mt-20">
-          <h2 className="text-center text-3xl md:text-start font-semibold">About</h2>
-          <p className="py-5 text-[17px]">
-            Hi, welcome to my page. My name is Oyedeji Opeoluwa Farouk, and I am
-            a Frontend Web Developer based in Lagos State, Nigeria. I create
-            responsive and scalable websites for companies and businesses. A
-            graduate of Microbiology from Yaba College of Technology, Fuelled by
-            a passion for developing user friendly and scalable products. I have
-            a deep to excel and continuously improve in my work.I am passionate,
-            posess good communication skill which makes me good with working
-            with team members. <br />
-            <br />I am also a logical and critical thinker that thinks outside
-            the box to get problems solved. I love combining the worlds of logic
-            and creative design to make eye-catching, accessible, and
-            user-friendly website and applications.When I am not on my laptop
-            writing codes, I enjoy my time playing video games and listening to
-            music.
+            <div className="border-1 w-fit border-[#c2c2c2] p-5 rounded-full mt-10">
+              <HiArrowDownRight size={40} color="#464545" />
+            </div>
+          </div>
+          <div className="-mt-35">
+            <Image
+              src={"/pic2.png"}
+              width={500}
+              height={500}
+              alt=""
+              className="rounded-full"
+            />
+          </div>
+          <div className="max-w-[300px]">
+            <div>
+              <p className="text-center md:text-end text-md text-[#464545] font-semibold">
+                I AM PASSIONATE ABOUT CREATING WEBSITES AND WEBAPPS THAT STANDS
+                OUT FROM THE CROWD
+              </p>
+            </div>
+            <div className="text-center mt-10 md:text-end text-lg text-[#464545] font-semibold md:mt-20">
+              <p>WEB DEVELOPMENT </p>
+              <p className="py-3">LANDING PAGES</p>
+              <p>WEB-APP DEVELOPMENT </p>
+              <p className="py-3">EXPERT WEBFLOW</p>
+              <p>REACT NATIVE</p>
+            </div>
+          </div>
+        </div>
+
+        <section
+          id="about"
+          className="mt-10 flex flex-col md:flex-row items-center md:mt-20 justify-between "
+        >
+          <p className="text-[50px] md:text-[100px]">ABOUT</p>
+          <p className="text-lg text-center md:text-xl max-w-[500px] md:text-start justify-between items-center text-[#464545] font-semibold">
+            Farouk Oyedeji is Nextjs and React Frontend developer with over Two
+            years of experience based in Lagos, Nigeria.
           </p>
         </section>
+        <div className="flex flex-col md:flex-row justify-between items-center border-1 border-[#c2c2c2] mt-5 px-10">
+          <div>
+            <p className="text-5xl font-semibold">5M+</p>
+            <p className="font-semibold text-[#464545] pt-3">SUCCESS PROJECT</p>
+          </div>
 
-        <section id="experience" className="mb-[50px] md:mb-[100px] scroll-mt-20">
-          <h2 className="text-center md:text-start text-3xl font-semibold">Experience</h2>
-          {/* <p>Experience content goes here...</p> */}
-          <div className="flex flex-col md:flex-row gap-2 mt-[20px] text-[17px]">
-            <div className="flex-1">
-              <p className="font-bold">Nov 2023 - May 2025</p>
-              <p className="italic text-[16px]">Frontend Web Developer</p>
-            </div>
+          <div className="h-50 w-[1px] mx-10 bg-[#c2c2c2]"></div>
 
-            <p className="flex-2 text-[17px]">
-              Built and maintained responsive and user-friendly web applications
-              using React, Next.js, and Tailwind CSS. I was responsible for the
-              development of the UI designs, ensuring they were responsive
-              across all screen sizes. I also collaborated with the backend team
-              to integrate APIs and ensure seamless functionality across the
-              application.
-              <br />
-              <br />I single-handedly developed a web application for a client,
-              which involved gathering requirements, designing the UI, and
-              implementing the frontend functionality.
+          <div>
+            <p className="text-5xl font-semibold">3k+</p>
+            <p className="font-semibold text-[#464545] pt-3">
+              PRODUCT LAUNCHES
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-2 mt-[40px] text-[17px]">
-            <div className="flex-1">
-              <p className="font-bold">Feb 2023 - Nov 2023</p>
-              <p className="italic text-[16px]">Frontend Intern</p>
-            </div>
+          <div className="h-50 w-[1px] mx-10 bg-[#c2c2c2]"></div>
 
-            <p className="flex-2 text-[17px]">
-              Assited in the development of user interfaces for various
-              projects, including the developement of admin and users portals
-              for different organization,I also collaborated with a team of five
-              to design scalable applications for clients.
-              <br />
-              <br />
-              Learnt how to use React, Tailwind CSS, and other frontend
-              technologies to build responsive and user-friendly web
-              applications. I also gained experience in collaborating with the
-              backend team to integrate APIs and ensure seamless functionality
-              across the application.
+          <div>
+            <p className="text-5xl font-semibold">24+</p>
+            <p className="font-semibold text-[#464545] pt-3">
+              YEARS EXPERIENCE
+            </p>
+          </div>
+        </div>
+
+        <section id="about" className="mt-20 items-center justify-center">
+          <p className="text-[50px] leading-20 md:text-[100px] md:leading-40 text-center pb-10 ">
+            FEATURED PROJECTS
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <Card
+              title={"Teevill"}
+              description={
+                "Teevil is a recruiting platform where clients get to hire talent for a service."
+              }
+              image={"/teeveil.png"}
+              technologies={[
+                "Next JS",
+                "Chakra UI",
+                "Tanstack Query",
+                "Axios",
+                "MongoDB",
+              ]}
+              demoUrl={"http://teevil-next.vercel.app/"}
+              githubUrl={"https://github.com/farouk-7/teevil__next.git"}
+            />
+            <Card
+              title={"Eventree"}
+              description={
+                "Eventree is a website for an event management that helps cater for your event, from getting vendors, setting up the event hall and event providing props SPRAYA for your events. Our appication also help to send invitations to your selected guests."
+              }
+              image={"/eventree.png"}
+              technologies={[
+                "React",
+                "Chakra UI",
+                "Axios",
+                "AOS",
+                "Framer motion ",
+              ]}
+              demoUrl={"https://eventreelandingpage.netlify.app/"}
+              githubUrl={
+                "https://github.com/Zillight-Innovation-Labs/Event-management-langing.git"
+              }
+            />
+            <Card
+              title={"Lead Capital"}
+              description={
+                "Lead Capital is a logistic company that helps to move your goods not just within the country but across countries"
+              }
+              image={"/leadCapital.png"}
+              technologies={[
+                "React",
+                "Chakra UI",
+                "Axios",
+                "AOS",
+                "Framer motion ",
+              ]}
+              demoUrl={"https://leadcapital.netlify.app/"}
+              githubUrl={
+                "https://github.com/Zillight-Innovation-Labs/leadcapital-website.git"
+              }
+            />
+            <Card
+              title={"Divvicson Academy Website"}
+              description={
+                "Divvicson Academy is an online learning platform that provides courses on various topics, including web development, programming, and design. The website is built with React and Chakra ui."
+              }
+              image={"/divicsion.png"}
+              technologies={["React", "Chakra", "AOS"]}
+              demoUrl={"https://divvicson.netlify.app/"}
+              githubUrl={
+                "https://github.com/Zillight-Innovation-Labs/leadcapital-website.git"
+              }
+            />
+            <Card
+              title={"Task Naija"}
+              description={
+                "Task Naija is an application where you get to hire skilled workers who are ready to render their services. Services ranging from cleaning, driving, carpentary, e.tc"
+              }
+              image={"/tasknaij.png"}
+              technologies={["React", "Chakra", "AOS"]}
+              demoUrl={"https://task-naija.netlify.app/"}
+              githubUrl={"https://github.com/farouk-7/tasknaija.app.git"}
+            />
+          </div>
+        </section>
+
+        <section id="about" className="mt-20 items-center justify-center">
+          <p className="text-[50px] leading-20 md:text-[100px] md:leading-40 text-center pb-1">
+            THE SERVICE I OFFER
+          </p>
+          <p className="text-lg md:text-xl max-w-[800px] m-auto text-center justify-center text-[#464545] font-semibold">
+            CREATING VISUALLY APPEALING AND FUNCTIONAL WEBSITES TAILORED TO THE
+            CLIENT'S NEEDS AND GOALS. PROVIDING A CONSISTENTUSER EXPERIENCE
+            ACROSS PLATFORMS.
+          </p>
+
+          <div className="my-10 text-[#464545]">
+            <p className="text-center text-xl md:text-2xl font-semibold px-10 py-5 border-2 border-[#c2c2c2] rounded-full">
+              WEBSITE DEVELOPMENT
+            </p>
+            <p className="text-center text-xl md:text-2xl font-semibold px-10 py-5 border-2 border-[#c2c2c2] rounded-full my-10">
+              WEB APPLICATION
+            </p>
+            <p className="text-center text-xl md:text-2xl font-semibold px-10 py-5 border-2 border-[#c2c2c2] rounded-full">
+              REACT NATIVE MOBILE APPLICATION
             </p>
           </div>
         </section>
+      </div>
+      <div className="bg-black px-6 text-white py-10 md:py-20 md:px-50">
+        <p className="text-[50px] leading-20 md:text-[100px] md:leading-40">LET'S TALK</p>
+        <p className="text-lg md:text-xl text-[#f7f4f4] font-semibold">
+          Have a project, website or an idea in mind and you want to bring it to
+          live, feel free to reach out to me. I am here to help you accomplish
+          your dream.
+        </p>
 
-        <section id="projects" className="mb-[50px] md:mb-[150px] scroll-mt-20">
-          <h2 className="text-center md:text-start text-3xl font-semibold">Projects</h2>
-          <p className="py-5 text-[17px]">
-            Below are some of the works I have done as a team and individually.
-            You are welcome to go through them.
-          </p>
-          <div className="mt-[20px]">
-            {portData?.map((data) => (
-              <Link key={data?.id} href={data?.link}>
-                <div
-                  // key={}
-                  className="flex flex-col md:flex md:flex-row p-[20px] mb-2 rounded-[10px] md:gap-10 hover:bg-white/20 cursor-pointer  transition-colors ease-in duration-300"
-                >
-                    <Image alt="" src={data?.img} height={200} width={200} />
-                  
-                  
-                  <div>
-                    <p className="pt-[20px] md:pt-0 font-bold">{data?.name}</p>
-                    <p className="text-sm py-3">{data?.description}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+        <div className="mt-10 flex flex-col md:flex-row justify-between">
+          <div className="flex-1">
+            <div>
+              <p className="text-lg font-semibold py-1">Lagos, Nigeria</p>
+              <p className="text-lg font-semibold">2025</p>
+            </div>
 
-        <section id="technologies" className="mb-[50px] md:mb-[100px] scroll-mt-20">
-          <h2 className="text-center md:text-start text-3xl font-semibold">Technology</h2>
-          <p className="py-5 text-[17px]">
-            Listed below contains the technologies I have worked with and am
-            currently working with. I am always eager to learn new technologies
-            and improve my skills.
-          </p>
-          <div className="mt-[20px]">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              <p className="italic">React</p>
-              <p className="italic">Next.js</p>
-              <p className="italic">Tailwind CSS</p>
-              <p className="italic">Shadcn UI</p>
-              <p className="italic">Chakra UI</p>
-              <p className="italic">JavaScript</p>
-              <p className="italic">HTML</p>
-              <p className="italic">CSS</p>
-              <p className="italic">Git</p>
-              <p className="italic">GitHub</p>
-              <p className="italic">Figma</p>
-              <p className="italic">TypeScript</p>
-              <p className="italic">Framer Motion</p>
+            <div className="mt-5 mb-10 md:mt-10">
+              <p className="text-lg font-semibold ">Office hours</p>
+              <p className="text-lg font-semibold py-1">Monday - Saturday</p>
+              <p className="text-lg font-semibold">24/7</p>
             </div>
           </div>
-        </section>
-        <div>
-          <p className=" text-gray-400 text-sm hover:text-white transition-colors duration-200 ease-in-out">
-            Coded in <span style={{fontWeight:"bold"}}><i>Visual Studio Code</i></span> with love by Oyedeji Opeoluwa Farouk.
-            Built with <span style={{fontWeight:"bold"}}><i>Next.js, and Tailwind CSS.</i></span>  Deployed using <span style={{fontWeight:"bold"}}><i>Vercel.</i></span> 
-          </p>
+
+          <div className="flex-1">
+            <div>
+              <Label htmlFor="name" className="pb-2">
+                Name
+              </Label>
+              <Input type="text" className={"bg-white"} id="name" placeholder="Name" />
+            </div>
+            <div className="my-5">
+              <Label htmlFor="email" className="pb-2">
+                Email
+              </Label>
+              <Input type="email" className={"bg-white"} id="email" placeholder="Email" />
+            </div>
+            <div>
+              <Label className="pb-2">Message</Label>
+              <Textarea className={"bg-white text-black h-[200px]"} placeholder="Enter Message" />
+            </div>
+            <div className="flex mt-5 justify-end md:mt-10">
+              <button className="bg-white px-10 rounded-md py-1 hover:bg-blue-400 hover:text-white font-semibold text-black cursor-pointer">Send</button>
+            </div>
+          </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
