@@ -285,7 +285,7 @@ export default function Home() {
           </p>
           <p className="text-lg md:text-xl max-w-[800px] m-auto text-center justify-center text-[#464545] font-semibold">
             CREATING VISUALLY APPEALING AND FUNCTIONAL WEBSITES TAILORED TO THE
-            CLIENT'S NEEDS AND GOALS. PROVIDING A CONSISTENTUSER EXPERIENCE
+            CLIENT&apos;S NEEDS AND GOALS. PROVIDING A CONSISTENTUSER EXPERIENCE
             ACROSS PLATFORMS.
           </p>
 
@@ -303,7 +303,7 @@ export default function Home() {
         </section>
       </div>
       <div className="bg-black px-6 text-white py-10 md:py-20 md:px-50">
-        <p className="text-[50px] leading-20 md:text-[100px] md:leading-40">LET'S TALK</p>
+        <p className="text-[50px] leading-20 md:text-[100px] md:leading-40">LET&apos;S TALK</p>
         <p className="text-lg md:text-xl text-[#f7f4f4] font-semibold">
           Have a project, website or an idea in mind and you want to bring it to
           live, feel free to reach out to me. I am here to help you accomplish
