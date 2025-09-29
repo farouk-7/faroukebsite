@@ -58,24 +58,24 @@ export default function Home() {
       <div className="text-lg font-bold">FAROUK</div>
 
       <div className="hidden md:flex items-center gap-4">
-        <a href="/" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+        <Link href="/" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
           HOME
-        </a>
-        <a
+        </Link>
+        <Link
           href="#about"
           className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
         >
           ABOUT
-        </a>
-        <a href="#services" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+        </Link>
+        <Link href="#services" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
           SERVICES
-        </a>
-        <a href="#projects" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+        </Link>
+        <Link href="#projects" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
           PROJECTS
-        </a>
-         <a href="#contacts" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+        </Link>
+         <Link href="#contacts" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
           CONTACTS
-        </a>
+        </Link>
       </div>
 
       <div className="hidden md:flex items-center gap-2">
@@ -106,24 +106,24 @@ export default function Home() {
       </button>
       {isOpen && (
         <div className="absolute top-full left-0 w-full bg-white border-t border-[#c2c2c2] flex flex-col items-center gap-4 py-6 md:hidden z-10">
-          <a href="#" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+          <Link href="/" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
             HOME
-          </a>
-          <a
+          </Link>
+          <Link
             href="#about"
             className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
           >
             ABOUT
-          </a>
-          <a href="#services" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+          </Link>
+          <Link href="#services" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
             SERVICES
-          </a>
-          <a href="#projects" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+          </Link>
+          <Link href="#projects" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
             PROJECTS
-          </a>
-        <a href="#contacts" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+          </Link>
+        <Link href="#contacts" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
           CONTACTS
-        </a>
+        </Link>
 
           <div className="flex items-center gap-4 mt-4">
             <Link href="https://www.linkedin.com/in/opeoluwa-oyedeji-445a08245?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
