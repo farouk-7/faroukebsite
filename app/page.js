@@ -17,6 +17,8 @@ import Link from "next/link";
 
 export default function Home() {
     const [isOpen, setIsOpen] = useState(false);
+
+
   return (
     <div className="scroll-smooth">
       {/* <nav className="flex justify-between items-center border-b-[2px] py-5 px-50 border-b-[#c2c2c2]">
@@ -53,7 +55,7 @@ export default function Home() {
           </div>
         </div>
       </nav> */}
-    <nav className="flex justify-between items-center border-b-2 py-4 px-6 md:px-12 border-b-[#c2c2c2] relative">
+    <nav className="sticky top-0 z-50 bg-white flex justify-between items-center border-b-2 py-4 px-6 md:px-12 border-b-[#c2c2c2]">
      
       <div className="text-lg font-bold">FAROUK</div>
 
@@ -110,6 +112,7 @@ export default function Home() {
             HOME
           </Link>
           <Link
+            //  onClick={() => handleNavClick("#about")}
             href="#about"
             className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
           >
