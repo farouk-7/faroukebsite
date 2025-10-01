@@ -1,10 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
-import CursorSpotlight from "./components/CursorSpotlight";
+import { useState } from "react";
+// import CursorSpotlight from "./components/CursorSpotlight";
 import { FaBars, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiGithub } from "react-icons/fi";
-import { FaInstagram } from "react-icons/fa6";
+// import { FaInstagram } from "react-icons/fa6";
 import { HiArrowDownRight } from "react-icons/hi2";
 import Image from "next/image";
 import Card from "./components/Card";
@@ -16,136 +16,153 @@ import Link from "next/link";
 
 
 export default function Home() {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
 
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  };
+   const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        alert("Message sent");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        alert("Failed");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="scroll-smooth">
-      {/* <nav className="flex justify-between items-center border-b-[2px] py-5 px-50 border-b-[#c2c2c2]">
-        <div>PORTFOLIO</div>
-        <div className="flex items-center ">
-          <div className="border-1 cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 w-fit text-sm">
-            HOME
-          </div>
-          <a
-            href="#about"
-            className="border-1 cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 w-fit text-sm"
+      <nav className="sticky top-0 z-50 bg-white flex justify-between items-center border-b-2 py-4 px-6 md:px-12 border-b-[#c2c2c2]">
+        <div className="text-lg font-bold">FAROUK</div>
+
+        <div className="hidden md:flex items-center gap-4">
+          <Link
+            href="/"
+            className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
           >
-            ABOUT
-          </a>
-          <div className="border-1 cursor-pointer text-[#464545] font-semibold  border-[#c2c2c2] rounded-full px-5 py-1 w-fit text-sm">
-            SERVICES
-          </div>
-          <div className="border-1 cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 w-fit text-sm">
-            PROJECTS
-          </div>
-        </div>
-        <div className="flex items-center ">
-          <div className="border-1 cursor-pointer border-[#c2c2c2] rounded-full px-1 py-1 w-fit text-sm">
-            <FaLinkedinIn color={"#464545"} size={18} />
-          </div>
-          <div className="border-1 cursor-pointer border-[#c2c2c2] rounded-full px-1 py-1 w-fit text-sm">
-            <FaXTwitter color={"#464545"} size={18} />
-          </div>
-          <div className="border-1 cursor-pointer border-[#c2c2c2] rounded-full px-1 py-1 w-fit text-sm">
-            <FiGithub color={"#464545"} size={18} />
-          </div>
-          <div className="border-1 cursor-pointer border-[#c2c2c2] rounded-full px-1 py-1 w-fit text-sm">
-            <FaInstagram color={"#464545"} size={18} />
-          </div>
-        </div>
-      </nav> */}
-    <nav className="sticky top-0 z-50 bg-white flex justify-between items-center border-b-2 py-4 px-6 md:px-12 border-b-[#c2c2c2]">
-     
-      <div className="text-lg font-bold">FAROUK</div>
-
-      <div className="hidden md:flex items-center gap-4">
-        <Link href="/" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
-          HOME
-        </Link>
-        <Link
-          href="#about"
-          className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
-        >
-          ABOUT
-        </Link>
-        <Link href="#services" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
-          SERVICES
-        </Link>
-        <Link href="#projects" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
-          PROJECTS
-        </Link>
-         <Link href="#contacts" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
-          CONTACTS
-        </Link>
-      </div>
-
-      <div className="hidden md:flex items-center gap-2">
-        <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
-          <Link href="https://www.linkedin.com/in/opeoluwa-oyedeji-445a08245?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
-          <FaLinkedinIn color={"#464545"} size={16} />
-          </Link>
-        </div>
-        <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
-          <Link href="https://x.com/noblefarz7?s=21&t=9o-kQMhTECJluiNzbzjzTA">
-          <FaXTwitter color={"#464545"} size={16} />
-          </Link>
-        </div>
-        <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
-          <Link href="https://github.com/farouk-7"> 
-          <FiGithub color={"#464545"} size={16} />
-          </Link>
-        </div>
-        {/* <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
-          <FaInstagram color={"#464545"} size={16} />
-        </div> */}
-      </div>
-      <button
-        className="md:hidden text-[#464545] z-20 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <IoCloseSharp size={24} /> : <FaBars size={24} />}
-      </button>
-      {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-t border-[#c2c2c2] flex flex-col items-center gap-4 py-6 md:hidden z-10">
-          <Link href="/" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
             HOME
           </Link>
           <Link
-            //  onClick={() => handleNavClick("#about")}
             href="#about"
             className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
           >
             ABOUT
           </Link>
-          <Link href="#services" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+          <Link
+            href="#services"
+            className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
+          >
             SERVICES
           </Link>
-          <Link href="#projects" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
+          <Link
+            href="#projects"
+            className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
+          >
             PROJECTS
           </Link>
-        <Link href="#contacts" className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm">
-          CONTACTS
-        </Link>
-
-          <div className="flex items-center gap-4 mt-4">
-            <Link href="https://www.linkedin.com/in/opeoluwa-oyedeji-445a08245?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
-            <FaLinkedinIn color={"#464545"} size={18} />
-            </Link>
-
-            <Link href="https://x.com/noblefarz7?s=21&t=9o-kQMhTECJluiNzbzjzTA">
-            <FaXTwitter color={"#464545"} size={18} />
-            </Link>
-
-
-            <Link href="https://github.com/farouk-7"> 
-            <FiGithub color={"#464545"} size={18} />
-            </Link>
-            {/* <FaInstagram color={"#464545"} size={18} /> */}
-          </div>
+          <Link
+            href="#contacts"
+            className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
+          >
+            CONTACTS
+          </Link>
         </div>
-      )}
-    </nav>
+
+        <div className="hidden md:flex items-center gap-2">
+          <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
+            <Link href="https://www.linkedin.com/in/opeoluwa-oyedeji-445a08245?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
+              <FaLinkedinIn color={"#464545"} size={16} />
+            </Link>
+          </div>
+          <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
+            <Link href="https://x.com/noblefarz7?s=21&t=9o-kQMhTECJluiNzbzjzTA">
+              <FaXTwitter color={"#464545"} size={16} />
+            </Link>
+          </div>
+          <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
+            <Link href="https://github.com/farouk-7">
+              <FiGithub color={"#464545"} size={16} />
+            </Link>
+          </div>
+          {/* <div className="border cursor-pointer border-[#c2c2c2] rounded-full p-2">
+          <FaInstagram color={"#464545"} size={16} />
+        </div> */}
+        </div>
+        <button
+          className="md:hidden text-[#464545] z-20 cursor-pointer"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <IoCloseSharp size={24} /> : <FaBars size={24} />}
+        </button>
+        {isOpen && (
+          <div className="absolute top-full left-0 w-full bg-white border-t border-[#c2c2c2] flex flex-col items-center gap-4 py-6 md:hidden z-10">
+            <Link
+              href="/"
+              className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
+            >
+              HOME
+            </Link>
+            <Link
+              //  onClick={() => handleNavClick("#about")}
+              href="#about"
+              className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
+            >
+              ABOUT
+            </Link>
+            <Link
+              href="#services"
+              className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
+            >
+              SERVICES
+            </Link>
+            <Link
+              href="#projects"
+              className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
+            >
+              PROJECTS
+            </Link>
+            <Link
+              href="#contacts"
+              className="border cursor-pointer text-[#464545] font-semibold border-[#c2c2c2] rounded-full px-5 py-1 text-sm"
+            >
+              CONTACTS
+            </Link>
+
+            <div className="flex items-center gap-4 mt-4">
+              <Link href="https://www.linkedin.com/in/opeoluwa-oyedeji-445a08245?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
+                <FaLinkedinIn color={"#464545"} size={18} />
+              </Link>
+
+              <Link href="https://x.com/noblefarz7?s=21&t=9o-kQMhTECJluiNzbzjzTA">
+                <FaXTwitter color={"#464545"} size={18} />
+              </Link>
+
+              <Link href="https://github.com/farouk-7">
+                <FiGithub color={"#464545"} size={18} />
+              </Link>
+              {/* <FaInstagram color={"#464545"} size={18} /> */}
+            </div>
+          </div>
+        )}
+      </nav>
       <div className="py-5 px-6 md:px-50">
         <p className="text-center text-[55px] leading-20 md:text-[150px] md:leading-40 tracking-widest ">
           EXPLORE MY PORTFOLIO{" "}
@@ -322,8 +339,8 @@ export default function Home() {
           </p>
           <p className="text-lg md:text-xl max-w-[800px] m-auto text-center justify-center text-[#464545] font-semibold">
             CREATING VISUALLY APPEALING AND FUNCTIONAL WEBSITES TAILORED TO THE
-            CLIENT&apos;S NEEDS AND GOALS. PROVIDING A CONSISTENT USER EXPERIENCE
-            ACROSS PLATFORMS.
+            CLIENT&apos;S NEEDS AND GOALS. PROVIDING A CONSISTENT USER
+            EXPERIENCE ACROSS PLATFORMS.
           </p>
 
           <div className="my-10 text-[#464545]">
@@ -339,8 +356,13 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <section id="contacts" className="bg-black px-6 text-white py-10 md:py-20 md:px-50">
-        <p className="text-[50px] leading-20 md:text-[100px] md:leading-40">LET&apos;S TALK</p>
+      <section
+        id="contacts"
+        className="bg-black px-6 text-white py-10 md:py-20 md:px-50"
+      >
+        <p className="text-[50px] leading-20 md:text-[100px] md:leading-40">
+          LET&apos;S TALK
+        </p>
         <p className="text-lg md:text-xl text-[#f7f4f4] font-semibold">
           Have a project, website or an idea in mind and you want to bring it to
           live, feel free to reach out to me. I am here to help you accomplish
@@ -361,27 +383,92 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex-1">
+          {/* <div className="flex-1">
             <div>
               <Label htmlFor="name" className="pb-2">
                 Name
               </Label>
-              <Input type="text" className={"bg-white text-black"} id="name" placeholder="Name" />
+              <Input
+                type="text"
+                className={"bg-white text-black"}
+                id="name"
+                placeholder="Name"
+              />
             </div>
             <div className="my-5">
               <Label htmlFor="email" className="pb-2">
                 Email
               </Label>
-              <Input type="email" className={"bg-white text-black"} id="email" placeholder="Email" />
+              <Input
+                type="email"
+                className={"bg-white text-black"}
+                id="email"
+                placeholder="Email"
+              />
             </div>
             <div>
               <Label className="pb-2">Message</Label>
-              <Textarea className={"bg-white text-black h-[200px]"} placeholder="Enter Message" />
+              <Textarea
+                className={"bg-white text-black h-[200px]"}
+                placeholder="Enter Message"
+              />
             </div>
             <div className="flex mt-5 justify-end md:mt-10">
-              <button className="bg-white px-10 rounded-md py-1 hover:bg-blue-400 hover:text-white font-semibold text-black cursor-pointer">Send</button>
+              <button className="bg-white px-10 rounded-md py-1 hover:bg-blue-400 hover:text-white font-semibold text-black cursor-pointer">
+                Send
+              </button>
             </div>
+          </div> */}
+
+             <form onSubmit={handleSubmit} className="flex-1">
+          <div>
+            <Label htmlFor="name" className="pb-2">Name</Label>
+            <Input
+              id="name"
+              type="text"
+              value={form.name}
+              onChange={handleChange}
+              className="bg-white text-black"
+              placeholder="Name"
+              required
+            />
           </div>
+
+          <div className="my-5">
+            <Label htmlFor="email" className="pb-2">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              className="bg-white text-black"
+              placeholder="Email"
+              required
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="message" className="pb-2">Message</Label>
+            <Textarea
+              id="message"
+              value={form.message}
+              onChange={handleChange}
+              className="bg-white text-black h-[200px]"
+              placeholder="Enter Message"
+              required
+            />
+          </div>
+
+          <div className="flex mt-5 justify-end md:mt-10">
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-white px-10 rounded-md py-1 hover:bg-blue-400 hover:text-white font-semibold text-black cursor-pointer"
+            >
+              {loading ? "Sending..." : "Send"}
+            </button>
+          </div>
+        </form>
         </div>
       </section>
     </div>
