@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-// import CursorSpotlight from "./components/CursorSpotlight";
+
 import { FaBars, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiGithub } from "react-icons/fi";
-// import { FaInstagram } from "react-icons/fa6";
+
 import { HiArrowDownRight } from "react-icons/hi2";
 import Image from "next/image";
 import Card from "./components/Card";
@@ -177,7 +177,7 @@ export default function Home() {
               <HiArrowDownRight size={40} color="#464545" />
             </div>
           </div>
-          <div className="mt-3 mb-3 md:-mt-35 md: mb-0">
+          <div className="mt-3 mb-3 md:-mt-35 md:mb-0">
             <Image
               src={"/pic2.png"}
               width={500}

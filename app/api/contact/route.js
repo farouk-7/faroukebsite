@@ -16,7 +16,7 @@ export async function POST(req) {
     pass: process.env.GMAIL_PASS,
   },
   tls: {
-    rejectUnauthorized: false, // 👈 accept self-signed certs
+    rejectUnauthorized: false, 
   },
 });
 
@@ -33,7 +33,7 @@ export async function POST(req) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Email error:", error); // 👈 log actual error
+    console.error("Email error:", error); 
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
